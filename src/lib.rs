@@ -1,3 +1,4 @@
+pub use glfw_passthrough as glfw;
 use egui::{Event, Key, PointerButton, Pos2, RawInput};
 use egui_backend::raw_window_handle::HasRawWindowHandle;
 use egui_backend::GfxApiConfig;
@@ -11,7 +12,7 @@ use glfw::RenderContext;
 use glfw::WindowEvent;
 use std::sync::mpsc::Receiver;
 
-pub use glfw;
+
 
 pub struct GlfwWindow {
     pub glfw: glfw::Glfw,

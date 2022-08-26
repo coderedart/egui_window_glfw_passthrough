@@ -1,6 +1,6 @@
 [package]
 name = "egui_window_glfw_passthrough"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 description = "A glfw egui window backend with passthrough patches to enable overlay like capabilities"
@@ -8,5 +8,5 @@ repository = "https://github.com/coderedart/egui_window_glfw_passthrough.git"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-glfw = {version = "0.44.0", package = "glfw-passthrough"}
+glfw-passthrough = {version = "0.44.0"}
 egui_backend ={ version = "0.1.0"}
