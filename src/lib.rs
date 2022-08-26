@@ -234,7 +234,6 @@ impl GlfwWindow {
         self.frame_events.clear();
         let cursor_position = self.window.get_cursor_pos();
         let cursor_position = [cursor_position.0 as f32, cursor_position.1 as f32];
-        self.cursor_pos_physical_pixels = cursor_position;
         // when we are passthorugh, we use this to get latest position
         if cursor_position != self.cursor_pos_physical_pixels && self.window.is_mouse_passthrough()
         {
@@ -247,6 +246,7 @@ impl GlfwWindow {
                 .into(),
             ))
         }
+        self.cursor_pos_physical_pixels = cursor_position;
 
         for (_, event) in glfw::flush_messages(&self.events_receiver) {
             // if let &glfw::WindowEvent::CursorPos(..) = &event {
