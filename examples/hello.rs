@@ -1,7 +1,6 @@
-use egui_backend::WindowBackend;
+use egui_backend::{BackendSettings, WindowBackend};
 use egui_window_glfw_passthrough::GlfwWindow;
 
 fn main() {
-    let _ = GlfwWindow::new(Default::default(), egui_backend::GfxApiConfig::Vulkan {  });
-
+    let _ = GlfwWindow::new(Default::default(), BackendSettings::default());
 }
