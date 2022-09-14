@@ -19,6 +19,9 @@ pub struct GlfwWindow {
     pub events_receiver: Receiver<(f64, WindowEvent)>,
     pub window: glfw::Window,
     pub size_physical_pixels: [u32; 2],
+    /// this is not the actual scale of the monitor.
+    /// instead we divide framebuffer physical width with window logical width
+    /// use use `window.get_content_scale()` to get the actual scale of the monitor.
     pub scale: f32,
     pub cursor_pos_physical_pixels: [f32; 2],
     pub raw_input: RawInput,
@@ -131,7 +134,7 @@ impl WindowBackend for GlfwWindow {
         glfw_context.window_hint(glfw::WindowHint::TransparentFramebuffer(true));
         glfw_context.window_hint(glfw::WindowHint::MousePassthrough(true));
         glfw_context.window_hint(glfw::WindowHint::Floating(true));
-
+        glfw_context.window_hint(glfw::WindowHint::ScaleToMonitor(true));
         // create a window
         let (mut window, events_receiver) = glfw_context
             .create_window(800, 600, "Overlay Window", glfw::WindowMode::Windowed)
@@ -152,7 +155,8 @@ impl WindowBackend for GlfwWindow {
         }
         // collect details and keep them updated
         let (width, height) = window.get_framebuffer_size();
-        let scale = window.get_content_scale().0;
+        let (logical_width, _) = window.get_size();
+        let scale = width as f32 / logical_width as f32;
         let cursor_position = window.get_cursor_pos();
         let size_physical_pixels = [
             width.try_into().expect("width not fit in u32"),

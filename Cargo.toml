@@ -1,6 +1,6 @@
 [package]
 name = "egui_window_glfw_passthrough"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 license = "MIT"
 description = "A glfw egui window backend with passthrough patches to enable overlay like capabilities"
